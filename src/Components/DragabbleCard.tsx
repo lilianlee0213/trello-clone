@@ -5,7 +5,9 @@ const Card = styled.div`
 	padding: 10px;
 	border-radius: 5px;
 	background-color: ${(props) => props.theme.cardColor};
-	margin-bottom: 5px;
+	&:not(:last-child) {
+		margin-bottom: 10px;
+	}
 `;
 interface IDragabbleCardProps {
 	toDo: string;
