@@ -12,7 +12,6 @@ interface IDragabbleCardProps {
 	index: number;
 }
 function DragabbleCard({toDo, index}: IDragabbleCardProps) {
-	console.log(toDo, 'is rendered');
 	return (
 		<Draggable key={toDo} draggableId={toDo} index={index}>
 			{(provided) => (
