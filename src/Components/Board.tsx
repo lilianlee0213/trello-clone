@@ -14,25 +14,26 @@ interface IAreaProps {
 const BoardWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	padding: 10px 10px 20px;
 	width: 300px;
 	min-height: 300px;
 	border-radius: 5px;
 	background-color: ${(props) => props.theme.boardColor};
 `;
 const Title = styled.h2`
+	padding: 10px;
 	margin-bottom: 10px;
 	font-weight: 500;
 	font-size: 18px;
 	color: black;
 `;
 const Area = styled.div<IAreaProps>`
+	padding: 10px 10px 20px;
 	flex-grow: 1;
 	background-color: ${(props) =>
 		props.isDraggingOver
-			? '#f7d8e6'
+			? '#FFD1D1'
 			: props.isdraggingFromThisWith
-			? '#e6fcfe'
+			? '#CDF0EA'
 			: 'transparent'};
 
 	transition: background-color 0.3s ease-in-out;
