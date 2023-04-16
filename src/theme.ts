@@ -4,6 +4,6 @@ export const theme: DefaultTheme = {
 	bgColor: '#3f8cf2',
 	accentColor: '#9c88ff',
 	cardBgColor: 'transparent',
-	boardColor: '#dadfe9',
+	boardColor: '#EBECF1',
 	cardColor: 'white',
 };
