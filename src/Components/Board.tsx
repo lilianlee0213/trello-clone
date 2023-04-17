@@ -5,8 +5,8 @@ import {useForm} from 'react-hook-form';
 import {ITodo, toDoState} from '../atom';
 import {useSetRecoilState} from 'recoil';
 
-interface IBoardProps {
-	toDos: ITodo[];
+export interface IBoardProps {
+	toDos?: ITodo[];
 	boardId: string;
 }
 
@@ -20,7 +20,6 @@ interface IAreaProps {
 const BoardWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 300px;
 	min-height: 300px;
 	border-radius: 5px;
 	background-color: ${(props) => props.theme.boardColor};
@@ -92,7 +91,7 @@ function Board({toDos, boardId}: IBoardProps) {
 						isdraggingFromThisWith={Boolean(snapshot.draggingFromThisWith)}
 						ref={provided.innerRef}
 						{...provided.droppableProps}>
-						{toDos.map((toDo, index) => (
+						{toDos?.map((toDo, index) => (
 							<DragabbleCard
 								key={toDo.id}
 								index={index}
@@ -104,7 +103,6 @@ function Board({toDos, boardId}: IBoardProps) {
 					</Area>
 				)}
 			</Droppable>
-
 			<Form onSubmit={handleSubmit(onValid)}>
 				<Input
 					{...register('toDo', {required: true})}

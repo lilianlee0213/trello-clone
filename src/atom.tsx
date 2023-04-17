@@ -4,6 +4,7 @@ export interface ITodo {
 	id: number;
 	text: string;
 }
+
 interface IToDoState {
 	[key: string]: ITodo[];
 }
@@ -14,4 +15,9 @@ export const toDoState = atom<IToDoState>({
 		'In process': [],
 		Completed: [],
 	},
+});
+
+export const trashState = atom({
+	key: 'trash',
+	default: false,
 });
