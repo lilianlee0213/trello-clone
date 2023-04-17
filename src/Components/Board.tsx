@@ -33,7 +33,7 @@ const Title = styled.h2`
 	color: black;
 `;
 const Area = styled.div<IAreaProps>`
-	padding: 10px 10px 20px;
+	padding: 10px;
 	flex-grow: 1;
 	background-color: ${(props) =>
 		props.isDraggingOver
@@ -44,10 +44,28 @@ const Area = styled.div<IAreaProps>`
 
 	transition: background-color 0.3s ease-in-out;
 `;
-const Form = styled.form`
-	width: 100%;
-`;
 
+const Form = styled.form`
+	width: 90%;
+	margin: 0 auto;
+	padding: 10px 0 20px;
+`;
+const Input = styled.input`
+	padding: 5px;
+	border: none;
+	font-size: 14px;
+	font-family: 'Source Sans Pro', sans-serif;
+	text-align: center;
+	background-color: transparent;
+	&:focus {
+		&::placeholder {
+			color: transparent;
+		}
+		outline: 2px solid ${(props) => props.theme.bgColor};
+		text-align: left;
+		background-color: white;
+	}
+`;
 function Board({toDos, boardId}: IBoardProps) {
 	const setToDos = useSetRecoilState(toDoState);
 	const {register, setValue, handleSubmit} = useForm<IForm>();
@@ -67,13 +85,6 @@ function Board({toDos, boardId}: IBoardProps) {
 	return (
 		<BoardWrapper>
 			<Title>{boardId}</Title>
-			<Form onSubmit={handleSubmit(onValid)}>
-				<input
-					{...register('toDo', {required: true})}
-					type="text"
-					placeholder={`Add task on ${boardId}`}
-				/>
-			</Form>
 			<Droppable droppableId={boardId}>
 				{(provided, snapshot) => (
 					<Area
@@ -93,6 +104,14 @@ function Board({toDos, boardId}: IBoardProps) {
 					</Area>
 				)}
 			</Droppable>
+
+			<Form onSubmit={handleSubmit(onValid)}>
+				<Input
+					{...register('toDo', {required: true})}
+					type="text"
+					placeholder={`+ Add a card`}
+				/>
+			</Form>
 		</BoardWrapper>
 	);
 }

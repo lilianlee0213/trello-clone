@@ -1,9 +1,4 @@
-import {
-	DragDropContext,
-	Draggable,
-	DropResult,
-	Droppable,
-} from 'react-beautiful-dnd';
+import {DragDropContext, DropResult} from 'react-beautiful-dnd';
 import {useRecoilState} from 'recoil';
 import styled from 'styled-components';
 import {toDoState} from './atom';
@@ -28,17 +23,18 @@ const Boards = styled.div`
 function App() {
 	const [toDos, setToDos] = useRecoilState(toDoState);
 	const onDragEnd = (info: DropResult) => {
-		const {destination, draggableId, source} = info;
+		const {destination, source} = info;
 		if (!destination) return;
 		if (destination?.droppableId === source.droppableId) {
 			//same board movement;
 			setToDos((allBoards) => {
 				//1) make a copy of the board has been modified
 				const boardCopy = [...allBoards[source.droppableId]];
+				const taskObject = boardCopy[source.index];
 				//2) Delete item on source.index
 				boardCopy.splice(source.index, 1);
 				//3)Put back the item on the destination.index
-				boardCopy.splice(destination?.index, 0, draggableId);
+				boardCopy.splice(destination?.index, 0, taskObject);
 
 				return {
 					...allBoards,
@@ -50,9 +46,10 @@ function App() {
 		if (destination?.droppableId !== source.droppableId) {
 			setToDos((allBoards) => {
 				const sourceBoard = [...allBoards[source.droppableId]];
+				const taskObject = sourceBoard[source.index];
 				const destinationBoard = [...allBoards[destination.droppableId]];
 				sourceBoard.splice(source.index, 1);
-				destinationBoard.splice(destination?.index, 0, draggableId);
+				destinationBoard.splice(destination?.index, 0, taskObject);
 				return {
 					...allBoards,
 					[source.droppableId]: sourceBoard,

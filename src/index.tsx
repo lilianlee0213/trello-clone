@@ -67,6 +67,10 @@ a{
 	text-decoration: none;
   color:inherit;
 }
+input{
+  width: 100%;
+  outline: none;
+}
 `;
 
 const root = ReactDOM.createRoot(
