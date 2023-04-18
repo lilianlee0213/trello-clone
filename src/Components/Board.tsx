@@ -13,8 +13,8 @@ export interface IBoardProps {
 interface IForm {
 	toDo: string;
 }
-interface IAreaProps {
-	isdraggingFromThisWith: boolean;
+export interface IAreaProps {
+	isdraggingFromThisWith?: boolean;
 	isDraggingOver: boolean;
 }
 const BoardWrapper = styled.div`
